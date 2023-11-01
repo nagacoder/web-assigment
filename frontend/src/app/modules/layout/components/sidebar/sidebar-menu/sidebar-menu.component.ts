@@ -25,7 +25,6 @@ export class SidebarMenuComponent implements OnInit {
   constructor(public menuService: MenuService) {}
 
   public toggleMenu(subMenu: SubMenuItem) {
-    console.log(subMenu)
     this.menuService.toggleMenu(subMenu);
   }
 
