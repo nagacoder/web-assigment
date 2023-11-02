@@ -60,9 +60,9 @@ class RoomTypeController extends Controller
         try {
             $roomType = RoomType::findOrFail($id);
             $roomType->delete();
-            return response()->json(['message' => 'roomType deleted successfully'], 200);
+            return response()->json(['message' => 'Room types deleted successfully'], 200);
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-            return response()->json(['message' => 'roomType not found'], 404);
+            return response()->json(['message' => 'Room types not found'], 404);
         }
     }
 }
