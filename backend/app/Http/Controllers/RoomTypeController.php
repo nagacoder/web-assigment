@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Requests\StoreRoomTypeRequest;
 use App\Http\Requests\UpdateRoomTypeRequest;
 use App\Models\RoomType;
@@ -13,54 +15,54 @@ class RoomTypeController extends Controller
      */
     public function index()
     {
-        //
+        return RoomType::all();
+    }
+    public function show($id)
+    {
+        try {
+            return RoomType::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'RoomType not found'], 404);
+        }
+       
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+        return RoomType::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreRoomTypeRequest $request)
-    {
-        //
+    public function update(Request $request, $id)
+    { 
+        try {
+            $roomType = RoomType::findOrFail($id);
+            $roomType->update($request->all());
+            return $roomType;
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'Room Type not found'], 404);
+        }
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(RoomType $roomType)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(RoomType $roomType)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateRoomTypeRequest $request, RoomType $roomType)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(RoomType $roomType)
-    {
-        //
+        try {
+            $roomType = RoomType::findOrFail($id);
+            $roomType->delete();
+            return response()->json(['message' => 'roomType deleted successfully'], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'roomType not found'], 404);
+        }
     }
 }

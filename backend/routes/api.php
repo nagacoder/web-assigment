@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\RoomTypeController;
+use App\Http\Controllers\RoomController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login', [AuthController::class, 'loginUser']);
+Route::post('/register', [AuthController::class, 'createUser']);
+
+// Room Type CRUD
+Route::apiResource('room_types', RoomTypeController::class)->middleware('auth:sanctum');
+Route::apiResource('room', RoomController::class)->middleware('auth:sanctum');
