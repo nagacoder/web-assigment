@@ -22,6 +22,6 @@ Route::post('/login', [AuthController::class, 'loginUser']);
 Route::post('/register', [AuthController::class, 'createUser']);
 
 // Room Type CRUD
-Route::apiResource('room_types', RoomTypeController::class)->middleware('auth:sanctum');
+Route::apiResource('room_types', RoomTypeController::class)->middleware(['auth:sanctum']);
 Route::apiResource('room', RoomController::class)->middleware('auth:sanctum');
 Route::apiResource('users', UserController::class)->middleware('auth:sanctum');
