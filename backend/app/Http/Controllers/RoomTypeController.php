@@ -11,13 +11,13 @@ use App\Models\RoomType;
 class RoomTypeController extends Controller
 {
 
-    public function __construct()
-    {
-       $this->middleware('permission:create-product|edit-product|delete-product', ['only' => ['index','show']]);
-       $this->middleware('permission:create-product', ['only' => ['create','store']]);
-       $this->middleware('permission:edit-product', ['only' => ['edit','update']]);
-       $this->middleware('permission:delete-product', ['only' => ['destroy']]);
-    }
+    // public function __construct()
+    // {
+    //    $this->middleware('permission:create-product|edit-product|delete-product', ['only' => ['index','show']]);
+    //    $this->middleware('permission:create-product', ['only' => ['create','store']]);
+    //    $this->middleware('permission:edit-product', ['only' => ['edit','update']]);
+    //    $this->middleware('permission:delete-product', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      */

@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
+import { CommonModule } from '@angular/common';
 import { NftComponent } from './pages/nft/nft.component';
 import { PodcastComponent } from './pages/podcast/podcast.component';
 import { UsersComponent } from './pages/users/users.component';
+import { RoomTypesComponent } from './pages/room-types/room-types.component';
+import { AddRoomTypesComponent } from './pages/add-room-types/add-room-types.component';
 
 const routes: Routes = [
   {
@@ -14,7 +17,8 @@ const routes: Routes = [
       { path: 'home', component: NftComponent },
       { path: 'users', component: UsersComponent },
       { path: 'room', component: UsersComponent },
-      { path: 'room-type', component: UsersComponent },
+      { path: 'room-type', component: RoomTypesComponent },
+      { path: 'add-room-type', component: AddRoomTypesComponent },
       { path: 'additional-fee', component: UsersComponent },
       { path: 'transactions', component: UsersComponent },
       { path: 'reports', component: UsersComponent },
@@ -25,7 +29,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [CommonModule,RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
 export class DashboardRoutingModule { }
