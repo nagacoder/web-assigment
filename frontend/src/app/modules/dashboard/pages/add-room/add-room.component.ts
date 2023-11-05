@@ -4,8 +4,8 @@ import { RouterLink } from '@angular/router';
 import { Router } from '@angular/router';
 import { NgClass, NgIf } from '@angular/common';
 @Component({
-    selector: 'dashboard-add-room-types',
-    templateUrl: './add-room-types.component.html',
+    selector: 'dashboard-add-room',
+    templateUrl: './add-room.component.html',
     standalone: true,
     imports: [
         FormsModule,
@@ -16,13 +16,17 @@ import { NgClass, NgIf } from '@angular/common';
     ],
     
 })
-export class AddRoomTypesComponent implements OnInit {
+export class AddRoomComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   constructor(private _formBuilder: FormBuilder, private readonly _router: Router) {}
   ngOnInit(): void {
     this.form = this._formBuilder.group({
       name: ['', Validators.required],
+      area: ['', Validators.required],
+      price: ['', Validators.required],
+      facility: ['', Validators.required],
+      room_types_id: ['', Validators.required],
     });
   }
   get f() {

@@ -7,7 +7,8 @@ import { PodcastComponent } from './pages/podcast/podcast.component';
 import { UsersComponent } from './pages/users/users.component';
 import { RoomTypesComponent } from './pages/room-types/room-types.component';
 import { AddRoomTypesComponent } from './pages/add-room-types/add-room-types.component';
-
+import { RoomComponent } from './pages/room/room.component';
+import { AddRoomComponent } from './pages/add-room/add-room.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,9 +17,10 @@ const routes: Routes = [
       { path: '', redirectTo: 'home', pathMatch: 'full' },
       { path: 'home', component: NftComponent },
       { path: 'users', component: UsersComponent },
-      { path: 'room', component: UsersComponent },
+      { path: 'room', component: RoomComponent },
       { path: 'room-type', component: RoomTypesComponent },
       { path: 'add-room-type', component: AddRoomTypesComponent },
+      { path: 'add-room', component: AddRoomComponent },
       { path: 'additional-fee', component: UsersComponent },
       { path: 'transactions', component: UsersComponent },
       { path: 'reports', component: UsersComponent },
