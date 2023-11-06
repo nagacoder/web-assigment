@@ -36,11 +36,7 @@ export class Menu {
           label: 'Transaksi',
           route: '/dashboard/transactions',
         },
-        {
-          icon: 'assets/icons/heroicons/outline/users.svg',
-          label: 'Laporan',
-          route: '/dashboard/reports',
-        },
+        
       ],
     },
     
