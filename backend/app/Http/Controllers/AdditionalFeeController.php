@@ -13,54 +13,55 @@ class AdditionalFeeController extends Controller
      */
     public function index()
     {
-        //
+        return AdditionalFee::all();
+    }
+    public function show($id)
+    {
+        try {
+            return AdditionalFee::findOrFail($id);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'AdditionalFee not found'], 404);
+        }
+       
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function store(Request $request)
     {
-        //
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 400);
+        }
+        return AdditionalFee::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreAdditionalFeeRequest $request)
-    {
-        //
+    public function update(Request $request, $id)
+    { 
+        try {
+            $item = AdditionalFee::findOrFail($id);
+            $item->update($request->all());
+            return $item;
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'AdditionalFee  not found'], 404);
+        }
+        
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(AdditionalFee $additionalFee)
+    public function destroy($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(AdditionalFee $additionalFee)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAdditionalFeeRequest $request, AdditionalFee $additionalFee)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(AdditionalFee $additionalFee)
-    {
-        //
+        try {
+            $item = AdditionalFee::findOrFail($id);
+            $item->delete();
+            return response()->json(['message' => 'AdditionalFee deleted successfully'], 200);
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return response()->json(['message' => 'AdditionalFee not found'], 404);
+        }
     }
 }
